@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zephyr.core.dao.TOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.zephyr.domain.TOperateLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="modify_date" jdbcType="VARCHAR" property="modifyDate" />
+    <result column="modify_name" jdbcType="VARCHAR" property="modifyName" />
+    <result column="modify_object" jdbcType="VARCHAR" property="modifyObject" />
+    <result column="modify_content" jdbcType="VARCHAR" property="modifyContent" />
+    <result column="modify_ip" jdbcType="VARCHAR" property="modifyIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, modify_date, modify_name, modify_object, modify_content, modify_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_operate_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_operate_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zephyr.domain.TOperateLog">
+    insert into t_operate_log (id, user_name, modify_date, 
+      modify_name, modify_object, modify_content, 
+      modify_ip)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR}, 
+      #{modifyName,jdbcType=VARCHAR}, #{modifyObject,jdbcType=VARCHAR}, #{modifyContent,jdbcType=VARCHAR}, 
+      #{modifyIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zephyr.domain.TOperateLog">
+    insert into t_operate_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="modifyName != null">
+        modify_name,
+      </if>
+      <if test="modifyObject != null">
+        modify_object,
+      </if>
+      <if test="modifyContent != null">
+        modify_content,
+      </if>
+      <if test="modifyIp != null">
+        modify_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyName != null">
+        #{modifyName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyObject != null">
+        #{modifyObject,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyContent != null">
+        #{modifyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyIp != null">
+        #{modifyIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zephyr.domain.TOperateLog">
+    update t_operate_log
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyName != null">
+        modify_name = #{modifyName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyObject != null">
+        modify_object = #{modifyObject,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyContent != null">
+        modify_content = #{modifyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyIp != null">
+        modify_ip = #{modifyIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zephyr.domain.TOperateLog">
+    update t_operate_log
+    set user_name = #{userName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=VARCHAR},
+      modify_name = #{modifyName,jdbcType=VARCHAR},
+      modify_object = #{modifyObject,jdbcType=VARCHAR},
+      modify_content = #{modifyContent,jdbcType=VARCHAR},
+      modify_ip = #{modifyIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
